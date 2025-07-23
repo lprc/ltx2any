@@ -92,7 +92,7 @@ class Biber < Extension
                                             log_lines: loglines, level: :error))
         errors = true
       when /^ERROR - (.*)$/
-        msgs.push(TexLogParser::Message.new(message: $LAST_MATCH_INFO[1], log_lines: loglines, level: error))
+        msgs.push(TexLogParser::Message.new(message: $LAST_MATCH_INFO[1], log_lines: loglines, level: :error))
         errors = true
       end
       linectr += 1
