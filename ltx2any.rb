@@ -232,7 +232,7 @@ begin
             old = File.open(".#{NAME}_extensionmsg_#{ext.name}", 'r') do |f|
               f.readlines.join
             end
-            old = YAML.load(old)
+            old = YAML.safe_load(old, permitted_classes: [LogParser::Message, Symbol], aliases: true)
             log.add_messages(ext.name, old[0], old[1], old[2])
           elsif log.has_messages?(ext.name)
             # Write new messages
