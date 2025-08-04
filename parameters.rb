@@ -28,7 +28,9 @@
   Parameter.new(:tmpdir, 't', String, '"#{self[:user_jobname]}#{TMPSUFFIX}"',
                 'Directory for temporary files'),
   Parameter.new(:ignore, 'i', String, '',
-                'Files to ignore, separated by colons')
+                'Files to ignore, separated by colons'),
+  Parameter.new(:show_file, 's', Boolean, false,
+                'Show resulting pdf file after compilation using evince'),
 ].each do |p|
   ParameterManager.instance.addParameter(p)
 end

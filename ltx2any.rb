@@ -199,6 +199,15 @@ begin
         break if ((PARAMS[:engineruns]).positive? && run > PARAMS[:engineruns]) || # User set number of runs
                  (PARAMS[:engineruns] <= 0 && !engine.do?) # User set automatic mode
       end
+      
+      # If argument for evince is present, show the resulting file
+      if PARAMS[:show_file] && File.exist?("#{PARAMS[:jobname]}.#{engine.extension}")
+        begin
+          system("evince '#{PARAMS[:jobname]}.#{engine.extension}' &")
+        rescue Exception => e
+          OUTPUT.error("Could not open resulting file with evince: #{e.message}")
+        end
+      end
 
       # Save log messages of last engine run
       log.add_messages(engine.name, :engine, result[:messages], result[:log])
