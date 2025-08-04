@@ -45,7 +45,7 @@ class PdfLaTeX < Engine
 
     # Command for the main LaTeX compilation work
     params = ParameterManager.instance
-    pdflatex = "pdflatex -file-line-error -interaction=nonstopmode #{params[:enginepar]} '#{params[:jobfile]}'"
+    pdflatex = "pdflatex -shell-escape -file-line-error -interaction=nonstopmode #{params[:enginepar]} '#{params[:jobfile]}'"
 
     f = IO.popen(pdflatex)
     log = f.readlines.map! { |s| Log.fix(s) }
