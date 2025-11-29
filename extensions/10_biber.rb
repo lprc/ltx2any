@@ -56,6 +56,7 @@ class Biber < Extension
       needrerun =   !File.exist?("#{params[:jobname]}.bbl") | # Is this the first run?
                     HashManager.instance.files_changed?("#{params[:jobname]}.bcf",
                                                         *@sources)
+      needrerun = !params[:ignore_biber]
       # NOTE: non-strict OR so that hashes are computed for next run
     end
 

@@ -31,6 +31,8 @@
                 'Files to ignore, separated by colons'),
   Parameter.new(:show_file, 's', Boolean, false,
                 'Show resulting pdf file after compilation using evince'),
+  Parameter.new(:ignore_biber, 'ib', Boolean, false,
+                'Ignore biber'),
 ].each do |p|
   ParameterManager.instance.addParameter(p)
 end
